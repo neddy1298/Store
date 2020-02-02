@@ -15,7 +15,8 @@ class UserTableSeeder extends Seeder
             'name' => 'User',
             'email' => 'user@gmail.com',
             'password' => bcrypt('user1298'),
-            'level' => 'VIP'
+            'level' => 'VIP',
+            'phone' => '082125241014',
         ];
 
         $admin = [

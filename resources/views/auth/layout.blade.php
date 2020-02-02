@@ -28,11 +28,21 @@
                     <div class="p-4 m-3">
                         <img src="{{ asset('admin') }}/img/stisla-fill.svg" alt="logo" width="80"
                             class="shadow-light rounded-circle mb-5 mt-2">
-                        <h4 class="text-dark font-weight-normal">Welcome to <span
-                                class="font-weight-bold">techOPedia</span>
+                        <h4 class="text-dark font-weight-normal">Welcome to <span class="font-weight-bold"><a
+                                    class="link" href="{{ url('/') }}">techOPedia</a></span>
                         </h4>
+                        @if(session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{session('success')}}
+                        </div>
+                        @elseif(session('warning'))
+                        <div class="alert alert-warning" role="alert">
+                            {{session('warning')}}
+                        </div>
+                        @else
                         <p class="text-muted">Before you get started, you must login or register if you don't already
                             have an account.</p>
+                        @endif
 
                         @yield('content')
 
@@ -102,6 +112,22 @@
     <script src="{{ asset('admin') }}/js/custom.js"></script>
 
     <!-- Page Specific JS File -->
+
+    <script>
+        var password = document.getElementById("password")
+    , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword(){
+    if(password.value != confirm_password.value) {
+    confirm_password.setCustomValidity("Passwords Don't Match");
+    } else {
+    confirm_password.setCustomValidity('');
+    }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+    </script>
 </body>
 
 </html>

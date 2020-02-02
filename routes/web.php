@@ -41,6 +41,8 @@ Route::get('/thankyou', function () {
 });
 
 Auth::routes();
+Route::get('/register', 'Auth\RegisterController@showRegisterForm')->name('user.register');
+Route::post('/register', 'Auth\RegisterController@register')->name('user.register.submit');
 Route::get('/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 Route::group(['prefix' => 'admin-login'], function () {

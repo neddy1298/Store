@@ -61,22 +61,17 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
                         @guest
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        @if (Route::has('register'))
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        @if (Route::has('user.register'))
+                        <a class="nav-link" href="{{ route('user.register') }}">{{ __('Register') }}</a>
                         @endif
                         @else
-
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
-                        </a>
-
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="nav-link" href="#">{{ Auth::user()->name }}</a>
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
-                        <form id="logout-form" action="{{ route('user.logout') }}" method="GET" style="display: none;">
+                        <form id="logout-form" action="{{ route('user.logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
                         @endguest

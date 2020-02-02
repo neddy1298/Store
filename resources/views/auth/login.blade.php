@@ -49,7 +49,7 @@
     </div>
 
     <div class="mt-5 text-center">
-        Don't have an account? <a href="{{ route('register') }}">Create new one</a>
+        Don't have an account? <a href="{{ route('user.register') }}">Create new one</a>
     </div>
 </form>
 @endsection

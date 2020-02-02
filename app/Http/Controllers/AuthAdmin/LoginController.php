@@ -71,7 +71,7 @@ class LoginController extends Controller
         }
 
         // If Unsuccessful, then redirect back to the login with the form data
-        return redirect()->back()->withInput($request->only('email', 'remember'));
+        return redirect()->back()->withInput($request->only('email', 'remember'))->with('warning','Login gagal periksa kembali email & password anda');
     }
 
     public function logout(Request $request)
