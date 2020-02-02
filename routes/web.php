@@ -41,10 +41,12 @@ Route::get('/thankyou', function () {
 });
 
 Auth::routes();
+Route::get('/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 Route::group(['prefix' => 'admin-login'], function () {
     Route::get('/', 'AuthAdmin\LoginController@showLoginForm')->name('admin.login');
     Route::post('/', 'AuthAdmin\LoginController@login')->name('admin.login.submit');
+    Route::get('/logout', 'AuthAdmin\LoginController@logout')->name('admin.logout');
 });
 
 

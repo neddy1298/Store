@@ -1,4 +1,4 @@
-@extends('auth.layout',['title'=>'Login'])
+@extends('auth.layout',['title'=>'Login','login'=>'Admin'])
 
 @section('content')
 <form method="POST" action="{{ route('admin.login.submit') }}" class="needs-validation" novalidate="">
