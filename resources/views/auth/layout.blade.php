@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/css/all.css">
 
     <!-- CSS Libraries -->
-    {{-- <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/bootstrap-social/bootstrap-social.css"> --}}
+    <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/bootstrap-social/bootstrap-social.css">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin') }}/css/style.css">
