@@ -7,13 +7,11 @@
     <title>techOPedia &mdash; {{$title}}</title>
 
     <!-- General CSS Files -->
-    <link rel="stylesheet" href="{{ asset('admin') }}/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('admin') }}/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('admin') }}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('admin') }}/css/all.css">
 
     <!-- CSS Libraries -->
-    <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/bootstrap-social/bootstrap-social.css">
+    {{-- <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/bootstrap-social/bootstrap-social.css"> --}}
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin') }}/css/style.css">
@@ -93,13 +91,10 @@
     </div>
 
     <!-- General JS Scripts -->
-    <script src="{{ asset('admin') }}/js/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="{{ asset('admin') }}/js/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    <script src="{{ asset('admin') }}/js/jquery-3.3.1.min.js"></script>
+    <script src="{{ asset('admin') }}/js/popper.min.js">
     </script>
-    <script src="{{ asset('admin') }}/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    <script src="{{ asset('admin') }}/js/bootstrap.min.js">
     </script>
     <script src="{{ asset('admin') }}/js/jquery.nicescroll.min.js"></script>
     <script src="{{ asset('admin') }}/js/moment.min.js"></script>
