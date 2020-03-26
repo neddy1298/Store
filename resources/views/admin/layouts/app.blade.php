@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/owl.carousel/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/owl.carousel/dist/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/ionicons201/css/ionicons.min.css">
-    <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/bootstrap-social/bootstrap-social.css">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('admin') }}/css/style.css">
