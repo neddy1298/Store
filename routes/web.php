@@ -55,7 +55,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::get('/home', 'Admin\DashboardController@index')->name('admin.dashboard');
 
     // Products
-    Route::get('products/{$id}/trash', 'Admin\ProductController@trash')->name('products.trash');
+    Route::get('products/search', 'Admin\ProductController@search')->name('products.search');
+    Route::post('products/{id}/trash', 'Admin\ProductController@trash')->name('products.trash');
     Route::resource('products','Admin\ProductController');
 });
 
