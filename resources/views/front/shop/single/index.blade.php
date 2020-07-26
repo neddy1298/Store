@@ -6,9 +6,9 @@
 <div class="bg-light py-3">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 mb-0"><a href="{{ url('/') }}">Home</a> <span class="mx-2 mb-0">/</span> <a
-                    href="shop.html">Shop</a> <span class="mx-2 mb-0">/</span> <strong class="text-black">The
-                    Shoe</strong>
+            <div class="col-md-12 mb-0"><a href="{{ route('home') }}">Home</a> <span class="mx-2 mb-0">/</span> <a
+                    href="{{ route('shop') }}">Shop</a> <span class="mx-2 mb-0">/</span> <strong
+                    class="text-black">{{ $product->name }}</strong>
             </div>
         </div>
     </div>
@@ -16,42 +16,31 @@
 
 <div class="site-section">
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="border">
-                    <img src="{{ asset('front') }}/images/product_1.jpg" alt="Image" class="img-fluid">
+        <div class="row no-gutters ">
+            <div class="col-md-6 products">
+                <div class="text-center item">
+                    @if ($product->new_price)
+                    <span class="tag">Sale</span>
+                    @elseif ($product->sold == $product->qty)
+                    <span class="tag bg-danger">Sold</span>
+                    @endif
+                    <img src="{{ asset('asset').'/'.$product->category.'/single/'.$product->img }}" alt="Image"
+                        class="img-fluid">
                 </div>
             </div>
             <div class="col-md-6">
-                <h2 class="text-black">The Shoe</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae, explicabo? Incidunt
-                    facere, natus soluta dolores iusto! Molestiae expedita veritatis nesciunt doloremque sint asperiores
-                    fuga voluptas, distinctio, aperiam, ratione dolore.</p>
-                <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos
-                    repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum
-                    hic magni iste, velit aperiam quis.</p>
-                <p><strong class="text-primary h4">$50.00</strong></p>
+                <h2 class="text-black">{{ $product->name }}</h2>
+                {!! $product->desc !!}
+                <p><strong class="text-primary h4">${{ $product->price }}</strong></p>
                 <div class="mb-1 d-flex">
+                    @foreach ($product->color as $color)
+
                     <label for="option-sm" class="d-flex mr-3 mb-3">
                         <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
                                 id="option-sm" name="shop-sizes"></span> <span
-                            class="d-inline-block text-black">Small</span>
+                            class="d-inline-block text-black">{{ $color }}</span>
                     </label>
-                    <label for="option-md" class="d-flex mr-3 mb-3">
-                        <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
-                                id="option-md" name="shop-sizes"></span> <span
-                            class="d-inline-block text-black">Medium</span>
-                    </label>
-                    <label for="option-lg" class="d-flex mr-3 mb-3">
-                        <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
-                                id="option-lg" name="shop-sizes"></span> <span
-                            class="d-inline-block text-black">Large</span>
-                    </label>
-                    <label for="option-xl" class="d-flex mr-3 mb-3">
-                        <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
-                                id="option-xl" name="shop-sizes"></span> <span class="d-inline-block text-black"> Extra
-                            Large</span>
-                    </label>
+                    @endforeach
                 </div>
                 <div class="mb-5">
                     <div class="input-group mb-3" style="max-width: 120px;">

@@ -38,7 +38,7 @@
                             </ul>
                         </li>
 
-                        <li class="{{ ($page == 'Shop') ? ' active' : '' }}"><a href="{{ url('/shop') }}">Shop</a></li>
+                        <li class="{{ ($page == 'Shop') ? ' active' : '' }}"><a href="{{ route('shop') }}">Shop</a></li>
                         <li class="{{ ($page == 'Contact') ? ' active' : '' }}"><a
                                 href="{{ url('/contact') }}">Contact</a></li>
                         <li class="{{ ($page == 'About') ? ' active' : '' }}"><a href="{{ url('/about') }}">About US</a>

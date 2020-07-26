@@ -46,7 +46,7 @@
                                 <p class="badge badge-danger">
                                     {{ $product->status }}</p>
                                 @else
-                                <p class="badge badge-warning">
+                                <p class="badge badge-info">
                                     {{ $product->status }}</p>
                                 @endif
                             </td>
@@ -58,7 +58,8 @@
                         <a href="{{ asset('asset') .'/'. $product->category.'/'. $product->img }}"
                             class="chocolat-image" title="{{ $product->name }}">
                             <div data-crop-image="285">
-                                <img alt="image" src="{{ asset('asset') }}/{{ $product->category.'/'. $product->img }}"
+                                <img alt="image"
+                                    src="{{ asset('asset') }}/{{ $product->category.'/285/'. $product->img }}"
                                     class="img-fluid">
                             </div>
                         </a>

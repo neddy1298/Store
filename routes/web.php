@@ -11,14 +11,10 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'Front\HomeController@index')->name('home');
 
-Route::get('/shop', function () {
-    return view('front.shop.index');
-});
-Route::get('/shop/1', function () {
-    return view('front.shop.single.index');
-});
+Route::get('/shop', 'Front\ShopController@index')->name('shop');
+Route::get('/shop/{id}', 'Front\ShopController@show')->name('shop.detail');
 
 Route::get('/contact', function () {
     return view('front.contact.index');

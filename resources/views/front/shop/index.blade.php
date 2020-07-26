@@ -6,7 +6,7 @@
 <div class="bg-light py-3">
     <div class="container">
         <div class="row">
-            <div class="col-md-12 mb-0"><a href="{{ url('/') }}">Home</a> <span class="mx-2 mb-0">/</span> <strong
+            <div class="col-md-12 mb-0"><a href="{{ route('home') }}">Home</a> <span class="mx-2 mb-0">/</span> <strong
                     class="text-black">Shop</strong></div>
         </div>
     </div>
@@ -55,76 +55,29 @@
                     <div class="products-wrap border-top-0">
                         <div class="container-fluid">
                             <div class="row no-gutters products">
+                                @foreach ($products as $product)
                                 <div class="col-6 col-md-6 col-lg-6 border-top">
-                                    <a href="{{ url('/shop/1') }}" class="item">
-                                        <img src="{{ asset('front') }}/images/product_1.jpg" alt="Image"
-                                            class="img-fluid">
-                                        <div class="item-info">
-                                            <h3>The Shoe</h3>
-                                            <span class="collection d-block">Summer Collection</span>
-                                            <strong class="price">$9.50</strong>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-6 col-md-6 col-lg-6 border-top">
-                                    <a href="{{ url('/shop/1') }}" class="item">
+                                    <a href="{{ route('shop.detail', $product->id) }}" class="item">
+                                        @if ($product->new_price)
                                         <span class="tag">Sale</span>
-                                        <img src="{{ asset('front') }}/images/product_2.jpg" alt="Image"
-                                            class="img-fluid">
+                                        @elseif ($product->sold == $product->qty)
+                                        <span class="tag bg-danger">Sold</span>
+                                        @endif
+                                        <img src="{{ asset('asset').'/'.$product->category.'/thumbnail/'.$product->img }}"
+                                            alt="Image" class="img-fluid">
                                         <div class="item-info">
-                                            <h3>Marc Jacobs Bag</h3>
+                                            <h3>{{ $product->name }}</h3>
                                             <span class="collection d-block">Summer Collection</span>
-                                            <strong class="price">$9.50 <del>$30.00</del></strong>
+                                            @if ($product->new_price)
+                                            <strong class="price">${{ $product->new_price }}
+                                                <del>${{ $product->price }}</del></strong>
+                                            @else
+                                            <strong class="price">${{ $product->price }}</strong>
+                                            @endif
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-6 col-md-6 col-lg-6">
-                                    <a href="{{ url('/shop/1') }}" class="item">
-                                        <img src="{{ asset('front') }}/images/product_3.jpg" alt="Image"
-                                            class="img-fluid">
-                                        <div class="item-info">
-                                            <h3>The Belt</h3>
-                                            <span class="collection d-block">Summer Collection</span>
-                                            <strong class="price">$9.50</strong>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="col-6 col-md-6 col-lg-6">
-                                    <a href="{{ url('/shop/1') }}" class="item">
-                                        <img src="{{ asset('front') }}/images/product_1.jpg" alt="Image"
-                                            class="img-fluid">
-                                        <div class="item-info">
-                                            <h3>The Shoe</h3>
-                                            <span class="collection d-block">Summer Collection</span>
-                                            <strong class="price">$9.50</strong>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-6 col-md-6 col-lg-6">
-                                    <a href="{{ url('/shop/1') }}" class="item">
-                                        <span class="tag">Sale</span>
-                                        <img src="{{ asset('front') }}/images/product_2.jpg" alt="Image"
-                                            class="img-fluid">
-                                        <div class="item-info">
-                                            <h3>Marc Jacobs Bag</h3>
-                                            <span class="collection d-block">Summer Collection</span>
-                                            <strong class="price">$9.50 <del>$30.00</del></strong>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="col-6 col-md-6 col-lg-6">
-                                    <a href="{{ url('/shop/1') }}" class="item">
-                                        <img src="{{ asset('front') }}/images/product_3.jpg" alt="Image"
-                                            class="img-fluid">
-                                        <div class="item-info">
-                                            <h3>The Belt</h3>
-                                            <span class="collection d-block">Summer Collection</span>
-                                            <strong class="price">$9.50</strong>
-                                        </div>
-                                    </a>
-                                </div>
-
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -150,12 +103,21 @@
                 <div class="border p-4 mb-4">
                     <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
                     <ul class="list-unstyled mb-0">
-                        <li class="mb-1"><a href="#" class="d-flex"><span>Men</span> <span
-                                    class="text-black ml-auto">(2,220)</span></a></li>
-                        <li class="mb-1"><a href="#" class="d-flex"><span>Women</span> <span
-                                    class="text-black ml-auto">(2,550)</span></a></li>
-                        <li class="mb-1"><a href="#" class="d-flex"><span>Children</span> <span
-                                    class="text-black ml-auto">(2,124)</span></a></li>
+                        <li class="mb-1"><a href="#" class="d-flex"><span>Phone</span> <span
+                                    class="text-black ml-auto">({{ $products->where('category','phone')->count() }})</span></a>
+                        </li>
+                        <li class="mb-1"><a href="#" class="d-flex"><span>Laptop</span> <span
+                                    class="text-black ml-auto">({{ $products->where('category','laptop')->count() }})</span></a>
+                        </li>
+                        <li class="mb-1"><a href="#" class="d-flex"><span>Computer</span> <span
+                                    class="text-black ml-auto">({{ $products->where('category','computer')->count() }})</span></a>
+                        </li>
+                        <li class="mb-1"><a href="#" class="d-flex"><span>Earphone</span> <span
+                                    class="text-black ml-auto">({{ $products->where('category','earphone')->count() }})</span></a>
+                        </li>
+                        <li class="mb-1"><a href="#" class="d-flex"><span>Smart Watch</span> <span
+                                    class="text-black ml-auto">({{ $products->where('category','smart_watch')->count() }})</span></a>
+                        </li>
                     </ul>
                 </div>
 
@@ -214,81 +176,27 @@
     <div class="container">
         <div class="row">
             <div class="title-section text-center col-12">
-                <h2 class="text-uppercase">The Collections</h2>
+                <h2 class="text-uppercase">Other Products</h2>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12 block-3 products-wrap">
                 <div class="nonloop-block-3 owl-carousel">
 
+                    @foreach ($products->random(4) as $product)
                     <div class="product">
-                        <a href="{{ url('/shop/1') }}" class="item">
-                            <img src="{{ asset('front') }}/images/product_1.jpg" alt="Image" class="img-fluid">
-                            <div class="item-info">
-                                <h3>The Shoe</h3>
-                                <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50</strong>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="product">
-                        <a href="{{ url('/shop/1') }}" class="item">
+                        <a href="{{ route('shop.detail', $product->id) }}" class="item">
                             <span class="tag">Sale</span>
-                            <img src="{{ asset('front') }}/images/product_2.jpg" alt="Image" class="img-fluid">
+                            <img src="{{ asset('asset').'/'.$product->category.'/thumbnail/'.$product->img }}"
+                                alt="Image" class="img-fluid">
                             <div class="item-info">
-                                <h3>Marc Jacobs Bag</h3>
+                                <h3>{{ $product->name }}</h3>
                                 <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50 <del>$30.00</del></strong>
+                                <strong class="price">${{ $product->price }} <del>$30.00</del></strong>
                             </div>
                         </a>
                     </div>
-
-                    <div class="product">
-                        <a href="{{ url('/shop/1') }}" class="item">
-                            <img src="{{ asset('front') }}/images/product_3.jpg" alt="Image" class="img-fluid">
-                            <div class="item-info">
-                                <h3>The Belt</h3>
-                                <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50</strong>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="product">
-                        <a href="{{ url('/shop/1') }}" class="item">
-                            <img src="{{ asset('front') }}/images/product_1.jpg" alt="Image" class="img-fluid">
-                            <div class="item-info">
-                                <h3>The Shoe</h3>
-                                <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50</strong>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="product">
-                        <a href="{{ url('/shop/1') }}" class="item">
-                            <span class="tag">Sale</span>
-                            <img src="{{ asset('front') }}/images/product_2.jpg" alt="Image" class="img-fluid">
-                            <div class="item-info">
-                                <h3>Marc Jacobs Bag</h3>
-                                <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50 <del>$30.00</del></strong>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="product">
-                        <a href="{{ url('/shop/1') }}" class="item">
-                            <img src="{{ asset('front') }}/images/product_3.jpg" alt="Image" class="img-fluid">
-                            <div class="item-info">
-                                <h3>The Belt</h3>
-                                <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50</strong>
-                            </div>
-                        </a>
-                    </div>
-
+                    @endforeach
                 </div>
             </div>
         </div>

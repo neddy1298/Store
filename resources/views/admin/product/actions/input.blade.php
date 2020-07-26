@@ -2,6 +2,7 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/summernote/dist/summernote-bs4.css">
 <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/selectric/public/selectric.css">
+<link rel="stylesheet" href="{{ asset('admin') }}/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
 @endsection
 
 @section('content')
@@ -64,6 +65,20 @@
                     </div>
                 </div>
                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Spesification</label>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <small>RAM / DISK</small>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control currency" name="spec" required
+                                placeholder="ex: 4/64">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Quantity</label>
                     <div class="col-sm-12 col-md-7">
                         <input type="number" class="form-control" name="qty" required>
@@ -73,6 +88,12 @@
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
                     <div class="col-sm-12 col-md-7">
                         <textarea class="summernote-simple" name="desc" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Color(s)</label>
+                    <div class="col-sm-12 col-md-7">
+                        <input type="text" class="form-control inputtags" name="color">
                     </div>
                 </div>
 
@@ -102,7 +123,7 @@
 <script src="{{ asset('admin') }}/node_modules/summernote/dist/summernote-bs4.js"></script>
 <script src="{{ asset('admin') }}/node_modules/selectric/public/jquery.selectric.min.js"></script>
 <script src="{{ asset('admin') }}/node_modules/jquery_upload_preview/assets/js/jquery.uploadPreview.min.js"></script>
-
+<script src="{{ asset('admin') }}/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
 <!-- Page Specific JS File -->
 <script src="{{ asset('admin') }}/js/page/features-post-create.js"></script>
 @endsection

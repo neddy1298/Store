@@ -2,6 +2,7 @@
 @section('css')
 <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/summernote/dist/summernote-bs4.css">
 <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/selectric/public/selectric.css">
+<link rel="stylesheet" href="{{ asset('admin') }}/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
 @endsection
 
 @section('content')
@@ -42,12 +43,12 @@
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Category</label>
                     <div class="col-sm-12 col-md-7">
                         <select class="form-control selectric" name="category" required>
-                            <option value="{{ $product->category }}" disabled>{{ $product->category }}</option>
-                            <option value="phone">Phone</option>
-                            <option value="laptop">Laptop</option>
-                            <option value="computer">Computer</option>
-                            <option value="earphone">Earphone</option>
-                            <option value="smart_watch">Smart Watch</option>
+                            <option value="{{ $product->category }}" selected>{{ $product->category }}</option>
+                            <option value="Phone">Phone</option>
+                            <option value="Laptop">Laptop</option>
+                            <option value="Computer">Computer</option>
+                            <option value="Earphone">Earphone</option>
+                            <option value="Smart_watch">Smart Watch</option>
                         </select>
                     </div>
                 </div>
@@ -67,6 +68,20 @@
                     </div>
                 </div>
                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Spesification</label>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <small>RAM / DISK</small>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control currency" name="spec" required
+                                value="{{ $product->spec }}" placeholder="ex: 4/64">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Quantity</label>
                     <div class="col-sm-12 col-md-7">
                         <input type="text" class="form-control" name="qty" required value="{{ $product->qty }}">
@@ -76,6 +91,12 @@
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Description</label>
                     <div class="col-sm-12 col-md-7">
                         <textarea class="summernote-simple" name="desc" required>{{ $product->desc }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Color(s)</label>
+                    <div class="col-sm-12 col-md-7">
+                        <input type="text" class="form-control inputtags" name="color">
                     </div>
                 </div>
                 <div class="form-group row mb-4">
@@ -91,8 +112,7 @@
                 <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Last Thumbnail</label>
                     <div class="col-sm-8 col-md-7">
-                        <img src="{{ asset('asset').'/'.$product->category.'/'.$product->img }}" alt="" srcset=""
-                            width="700">
+                        <img src="{{ asset('asset').'/'.$product->category.'/285/'.$product->img }}">
                     </div>
                 </div>
                 <div class="form-group row mb-4">
@@ -112,6 +132,7 @@
 <script src="{{ asset('admin') }}/node_modules/summernote/dist/summernote-bs4.js"></script>
 <script src="{{ asset('admin') }}/node_modules/selectric/public/jquery.selectric.min.js"></script>
 <script src="{{ asset('admin') }}/node_modules/jquery_upload_preview/assets/js/jquery.uploadPreview.min.js"></script>
+<script src="{{ asset('admin') }}/node_modules/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
 
 <!-- Page Specific JS File -->
 <script src="{{ asset('admin') }}/js/page/features-post-create.js"></script>
