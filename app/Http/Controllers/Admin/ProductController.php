@@ -135,9 +135,11 @@ class ProductController extends Controller
             'name' => 'required',
             'category' => 'required',
             'price' => 'required|integer',
+            'new_price' => 'integer',
             'spec' => 'required|min:3',
             'qty' => 'required|integer',
             'desc' => 'required',
+            'color' => 'required',
             'img' => 'image|max:2048'
         ]);
         if ($request->hasFile('img')) {
@@ -196,11 +198,15 @@ class ProductController extends Controller
             'name' => $request->name,
             'category' => $request->category,
             'price' => $request->price,
+            'new_price' => $request->new_price,
             'spec' => $request->spec,
             'qty' => $request->qty,
             'desc' => $request->desc,
             'color' => $request->color,
         ]);
+        $tags = explode(",", $request->color);
+        $product->tag($tags);
+
         return redirect(route('products.index'));
     }
 

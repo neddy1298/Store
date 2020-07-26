@@ -10,12 +10,11 @@
                     <h1 class="mb-2">Iphone 11</h1>
                     <h4>Limited for Sale</h4>
                     <div class="price mt-3 mb-5"><strong>1,499</strong> <del>$1,999</del></div>
-                    <p><a href="#" class="btn btn-outline-primary rounded-0">Shop Now</a> <a href="#"
-                            class="btn btn-primary rounded-0">Shop Now</a></p>
+                    <p><a href="#" class="btn btn-outline-primary rounded-0">Shop Now</a></p>
                 </div>
             </div>
             <div class="col-lg-7 text-center text-lg-right">
-                <img src="{{ asset('front') }}/images/iphone11.jpg" alt="Image" class="img-fluid img-1">
+                <img src="{{ asset('front') }}/images/iphone11.png" alt="Image" class="img-fluid img-1">
             </div>
 
         </div>
@@ -27,16 +26,25 @@
 <div class="products-wrap border-top-0">
     <div class="container-fluid">
         <div class="row no-gutters products">
-            @foreach ($bestSeller as $item)
+            @foreach ($bestSeller as $product)
             <div class="col-6 col-md-6 col-lg-4">
-                <a href="#" class="item">
+                <a href="{{ route('shop.detail', $product->id) }}" class="item">
+                    @if ($product->new_price)
                     <span class="tag">Sale</span>
-                    <img src="{{ asset('asset').'/'.$item->category.'/thumbnail/'.$item->img }}" alt="Image"
+                    @elseif ($product->sold == $product->qty)
+                    <span class="tag bg-danger">Sold</span>
+                    @endif
+                    <img src="{{ asset('asset').'/'.$product->category.'/thumbnail/'.$product->img }}" alt="Image"
                         class="img-fluid">
                     <div class="item-info">
-                        <h3>{{ $item->name }}</h3>
+                        <h3>{{ $product->name }}</h3>
                         <span class="collection d-block">Summer Collection</span>
-                        <strong class="price">${{ $item->price }} <del>$30.00</del></strong>
+                        @if ($product->new_price)
+                        <strong class="price">${{ $product->new_price }}
+                            <del>${{ $product->price }}</del></strong>
+                        @else
+                        <strong class="price">${{ $product->price }}</strong>
+                        @endif
                     </div>
                 </a>
             </div>
@@ -58,7 +66,7 @@
                 </div>
             </div>
             <div class="col-lg-8 order-1">
-                <img src="{{ asset('front') }}/images/iphonese.jpg" alt="Image" class="img-fluid">
+                <img src="{{ asset('front') }}/images/iphonese.png" alt="Image" class="img-fluid" width="75%">
             </div>
         </div>
     </div>
@@ -75,16 +83,25 @@
             <div class="col-md-12 block-3 products-wrap">
                 <div class="nonloop-block-3 owl-carousel">
 
-                    @foreach ($new as $item)
+                    @foreach ($new->take(6) as $product)
                     <div class="product">
-                        <a href="#" class="item">
+                        <a href="{{ route('shop.detail', $product->id) }}" class="item">
+                            @if ($product->new_price)
                             <span class="tag">Sale</span>
-                            <img src="{{ asset('asset').'/'.$item->category.'/thumbnail/'.$item->img }}" alt="Image"
-                                class="img-fluid">
+                            @elseif ($product->sold == $product->qty)
+                            <span class="tag bg-danger">Sold</span>
+                            @endif
+                            <img src="{{ asset('asset').'/'.$product->category.'/thumbnail/'.$product->img }}"
+                                alt="Image" class="img-fluid">
                             <div class="item-info">
-                                <h3>{{ $item->name }}</h3>
+                                <h3>{{ $product->name }}</h3>
                                 <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">${{ $item->price }} <del>$30.00</del></strong>
+                                @if ($product->new_price)
+                                <strong class="price">${{ $product->new_price }}
+                                    <del>${{ $product->price }}</del></strong>
+                                @else
+                                <strong class="price">${{ $product->price }}</strong>
+                                @endif
                             </div>
                         </a>
                     </div>

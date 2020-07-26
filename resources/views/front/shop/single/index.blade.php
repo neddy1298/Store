@@ -16,9 +16,9 @@
 
 <div class="site-section">
     <div class="container">
-        <div class="row no-gutters ">
+        <div class="row no-gutters">
             <div class="col-md-6 products">
-                <div class="text-center item">
+                <div class="text-center item mt-5 mb-5 p-5">
                     @if ($product->new_price)
                     <span class="tag">Sale</span>
                     @elseif ($product->sold == $product->qty)
@@ -33,12 +33,12 @@
                 {!! $product->desc !!}
                 <p><strong class="text-primary h4">${{ $product->price }}</strong></p>
                 <div class="mb-1 d-flex">
-                    @foreach ($product->color as $color)
+                    @foreach ($product->tags as $color)
 
                     <label for="option-sm" class="d-flex mr-3 mb-3">
                         <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
                                 id="option-sm" name="shop-sizes"></span> <span
-                            class="d-inline-block text-black">{{ $color }}</span>
+                            class="d-inline-block text-black">{{ $color->name }}</span>
                     </label>
                     @endforeach
                 </div>
@@ -73,73 +73,29 @@
             <div class="col-md-12 block-3 products-wrap">
                 <div class="nonloop-block-3 owl-carousel">
 
+                    @foreach ($random->take(6) as $product)
                     <div class="product">
-                        <a href="shop-single.html" class="item">
-                            <img src="{{ asset('front') }}/images/product_1.jpg" alt="Image" class="img-fluid">
-                            <div class="item-info">
-                                <h3>The Shoe</h3>
-                                <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50</strong>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="product">
-                        <a href="shop-single.html" class="item">
+                        <a href="{{ route('shop.detail', $product->id) }}" class="item">
+                            @if ($product->new_price)
                             <span class="tag">Sale</span>
-                            <img src="{{ asset('front') }}/images/product_2.jpg" alt="Image" class="img-fluid">
+                            @elseif ($product->sold == $product->qty)
+                            <span class="tag bg-danger">Sold</span>
+                            @endif
+                            <img src="{{ asset('asset').'/'.$product->category.'/thumbnail/'.$product->img }}"
+                                alt="Image" class="img-fluid">
                             <div class="item-info">
-                                <h3>Marc Jacobs Bag</h3>
+                                <h3>{{ $product->name }}</h3>
                                 <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50 <del>$30.00</del></strong>
+                                @if ($product->new_price)
+                                <strong class="price">${{ $product->new_price }}
+                                    <del>${{ $product->price }}</del></strong>
+                                @else
+                                <strong class="price">${{ $product->price }}</strong>
+                                @endif
                             </div>
                         </a>
                     </div>
-
-                    <div class="product">
-                        <a href="shop-single.html" class="item">
-                            <img src="{{ asset('front') }}/images/product_3.jpg" alt="Image" class="img-fluid">
-                            <div class="item-info">
-                                <h3>The Belt</h3>
-                                <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50</strong>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="product">
-                        <a href="shop-single.html" class="item">
-                            <img src="{{ asset('front') }}/images/product_1.jpg" alt="Image" class="img-fluid">
-                            <div class="item-info">
-                                <h3>The Shoe</h3>
-                                <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50</strong>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="product">
-                        <a href="shop-single.html" class="item">
-                            <span class="tag">Sale</span>
-                            <img src="{{ asset('front') }}/images/product_2.jpg" alt="Image" class="img-fluid">
-                            <div class="item-info">
-                                <h3>Marc Jacobs Bag</h3>
-                                <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50 <del>$30.00</del></strong>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="product">
-                        <a href="shop-single.html" class="item">
-                            <img src="{{ asset('front') }}/images/product_3.jpg" alt="Image" class="img-fluid">
-                            <div class="item-info">
-                                <h3>The Belt</h3>
-                                <span class="collection d-block">Summer Collection</span>
-                                <strong class="price">$9.50</strong>
-                            </div>
-                        </a>
-                    </div>
+                    @endforeach
 
                 </div>
             </div>

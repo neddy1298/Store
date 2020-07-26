@@ -68,6 +68,20 @@
                     </div>
                 </div>
                 <div class="form-group row mb-4">
+                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">New Price</label>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    $
+                                </div>
+                            </div>
+                            <input type="text" class="form-control currency" name="new_price"
+                                value="{{ $product->new_price }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Spesification</label>
                     <div class="col-sm-12 col-md-7">
                         <div class="input-group">
@@ -96,7 +110,7 @@
                 <div class="form-group row mb-4">
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Color(s)</label>
                     <div class="col-sm-12 col-md-7">
-                        <input type="text" class="form-control inputtags" name="color">
+                        <input type="text" class="form-control inputtags" name="color" value="{{ $product->color }}">
                     </div>
                 </div>
                 <div class="form-group row mb-4">
@@ -119,7 +133,7 @@
                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                     <div class="col-sm-12 col-md-7">
                         <button class="btn btn-primary mr-1" type="submit">Edit Product</button>
-                        <a class="btn btn-secondary" href="{{ url()->previous() }}">Cancel</a>
+                        <a class="btn btn-secondary" href="{{ route('products.index') }}">Cancel</a>
                     </div>
                 </div>
             </div>

@@ -28,7 +28,6 @@ class CreateProductsTable extends Migration
             $table->enum('category',['phone','laptop','computer','earphone','smart_watch']);
             $table->text('color')->nullable();
             $table->string('status')->default('Available');
-            // $table->enum('color', ['Hitam', 'Putih'])->nullable()->default(['foo', 'bar']);
             $table->timestamps();
         });
     }

@@ -85,21 +85,26 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <div class="site-block-27">
-                            <ul>
-                                <li><a href="#">&lt;</a></li>
-                                <li class="active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&gt;</a></li>
-                            </ul>
+                            {{ $products->links("front.layouts.pagination") }}
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-3 order-1 order-lg-2 mb-5 mb-lg-0">
+                <div class="border p-4 mb-4">
+                    <div class="block-7">
+
+                        <form action="#" method="post">
+                            <label for="email_subscribe" class="footer-heading">Felt Confused?</label>
+                            <div class="form-group">
+                                <input type="text" class="form-control py-4" id="email_subscribe" name="search">
+                                <input type="submit" class="btn btn-sm btn-primary" value="Search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
                 <div class="border p-4 mb-4">
                     <h3 class="mb-3 h6 text-uppercase text-black d-block">Categories</h3>
                     <ul class="list-unstyled mb-0">
@@ -183,7 +188,7 @@
             <div class="col-md-12 block-3 products-wrap">
                 <div class="nonloop-block-3 owl-carousel">
 
-                    @foreach ($products->random(4) as $product)
+                    @foreach ($random as $product)
                     <div class="product">
                         <a href="{{ route('shop.detail', $product->id) }}" class="item">
                             <span class="tag">Sale</span>
