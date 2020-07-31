@@ -28,18 +28,19 @@
                         class="img-fluid">
                 </div>
             </div>
-            <div class="col-md-6">
+            <form action="{{ route('cart.add', $product->id) }}" method="post" class="col-md-6">
+                @csrf
                 <h2 class="text-black">{{ $product->name }}</h2>
                 {!! $product->desc !!}
                 <p><strong class="text-primary h4">${{ $product->price }}</strong></p>
                 <div class="mb-1 d-flex">
                     @foreach ($product->tags as $color)
-
-                    <label for="option-sm" class="d-flex mr-3 mb-3">
-                        <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio"
-                                id="option-sm" name="shop-sizes"></span> <span
-                            class="d-inline-block text-black">{{ $color->name }}</span>
-                    </label>
+                    <div class="custom-control custom-radio d-flex mr-3 mb-3">
+                        <input type="radio" id="customRadio{{ $color->name }}" name="color" class="custom-control-input"
+                            value="{{ $color->name }}" required>
+                        <label class="custom-control-label"
+                            for="customRadio{{ $color->name }}">{{ $color->name }}</label>
+                    </div>
                     @endforeach
                 </div>
                 <div class="mb-5">
@@ -48,16 +49,18 @@
                             <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
                         </div>
                         <input type="text" class="form-control text-center" value="1" placeholder=""
-                            aria-label="Example text with button addon" aria-describedby="button-addon1">
+                            aria-label="Example text with button addon" aria-describedby="button-addon1"
+                            name="user_qty">
                         <div class="input-group-append">
                             <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                         </div>
                     </div>
 
                 </div>
-                <p><a href="cart.html" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
-
-            </div>
+                <p><input type="submit" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
+                        value="Add To Cart">
+                </p>
+            </form>
         </div>
     </div>
 </div>

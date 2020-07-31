@@ -15,13 +15,12 @@ Route::get('/', 'Front\HomeController@index')->name('home');
 
 Route::get('/shop', 'Front\ShopController@index')->name('shop');
 Route::get('/shop/{id}', 'Front\ShopController@show')->name('shop.detail');
+Route::post('/shop/{id}/add', 'Front\CartController@add')->name('cart.add');
+Route::get('/cart', 'Front\CartController@index')->name('cart');
+Route::get('/cart/{id}/delete', 'Front\CartController@delete')->name('cart.delete');
 
 Route::get('/contact', function () {
     return view('front.contact.index');
-});
-
-Route::get('/1/cart', function () {
-    return view('front.cart.index');
 });
 
 Route::get('/1/cart/checkout', function () {
