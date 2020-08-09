@@ -1,4 +1,4 @@
-@extends('admin.layouts.app',['page'=>'Product','page2'=>'Input'])
+@extends('admin.layouts.app',['page'=>'Product','page2'=>'Product-Input'])
 @section('css')
 <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/summernote/dist/summernote-bs4.css">
 <link rel="stylesheet" href="{{ asset('admin') }}/node_modules/selectric/public/selectric.css">

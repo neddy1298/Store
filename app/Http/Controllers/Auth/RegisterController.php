@@ -53,15 +53,13 @@ class RegisterController extends Controller
     protected function register(Request $request)
     {
         User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'name' => $request->first_name . ' ' . $request->last_name,
+            'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password_confirmation),
             'phone' => $request->phone,
             'level' => $request->level
         ]);
 
-        return redirect('/login')->with('success','Registrasi berhasil');
+        return redirect('/login')->with('success','Registration success please login to access your account');
     }
 }

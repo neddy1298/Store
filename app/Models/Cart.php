@@ -8,6 +8,6 @@ class Cart extends Model
 {
     protected $table = 'carts';
     protected $fillable = [
-        'id_user', 'id_product', 'color', 'user_qty', 'total'
+        'id_user', 'id_product', 'color', 'qty', 'total'
     ];
 }

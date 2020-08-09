@@ -4,20 +4,12 @@
 <form method="POST" action="{{ route('user.register.submit') }}">
     @csrf
     <div class="row">
-        <div class="form-group col-6">
-            <label for="first_name">First Name</label>
-            <input id="first_name" type="text" class="form-control" name="first_name" tabindex="1" required autofocus
-                value="{{ old('first_name') }}">
+        <div class="form-group col-12">
+            <label for="first_name">Name</label>
+            <input id="name" type="text" class="form-control" name="name" tabindex="1" required autofocus
+                value="{{ old('name') }}">
             <div class="invalid-feedback">
                 Please insert your name
-            </div>
-        </div>
-        <div class="form-group col-6">
-            <label for="last_name">Last Name</label>
-            <input id="last_name" type="text" class="form-control" name="last_name" tabindex="1" required autofocus
-                value="{{ old('last_name') }}">
-            <div class="invalid-feedback">
-                Please insert your last name
             </div>
         </div>
     </div>

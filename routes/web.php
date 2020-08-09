@@ -53,9 +53,18 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::get('products/search', 'Admin\ProductController@search')->name('products.search');
     Route::post('products/{id}/trash', 'Admin\ProductController@trash')->name('products.trash');
     Route::resource('products','Admin\ProductController');
+
+    // User
+    Route::get('user/','Admin\UserController@index')->name('user.index');
+    Route::get('user/search','Admin\UserController@search')->name('user.search');
+    Route::get('user/{id}','Admin\UserController@detail')->name('user.detail');
+    Route::get('user/{id}/search','Admin\UserController@shippingSearch')->name('user.shipping.search');
+    // Route::get('user/search', 'Admin\ProductController@search')->name('user.search');
+    // Route::post('user/{id}/trash', 'Admin\ProductController@trash')->name('user.trash');
+
+    // Shipping
+    Route::get('shipping/','Admin\ShippingController@index')->name('shipping.index');
+    Route::get('shipping/search', 'Admin\ShippingController@search')->name('shipping.search');
+    Route::get('shipping/{id}','Admin\ShippingController@detail')->name('shipping.detail');
+    // Route::post('shipping/{id}/trash', 'Admin\ProductController@trash')->name('shipping.trash');
 });
-
-// Route::get('/admin.panel/dashboard', function () {
-//     return view('admin.dashboard.index');
-// });
-

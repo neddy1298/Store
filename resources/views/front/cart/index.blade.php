@@ -68,7 +68,7 @@
                                 <h2 class="h5 text-black">{{ $cart->color }}</h2>
                             </td>
                             <td>
-                                <h5>{{ $cart->user_qty }}</h5>
+                                <h5>{{ $cart->qty }}</h5>
                             </td>
                             <td>${{ $cart->total }}</td>
                             <form action="{{ route('cart.delete',$cart->id) }}" method="get">

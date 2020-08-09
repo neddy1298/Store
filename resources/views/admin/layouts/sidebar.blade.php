@@ -27,9 +27,24 @@
             <li class="nav-item dropdown {{ ($page == 'Product' ? 'active' : '') }}">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Products</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ ($page2 == 'All' ? 'active' : '') }}">
+                    <li class="{{ ($page2 == 'Product-All' ? 'active' : '') }}">
                         <a class="nav-link mb-2" href="{{ route('products.index') }}">
                             <span>All Products</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item dropdown {{ ($page == 'User' ? 'active' : '') }}">
+                <a href="#" class="nav-link has-dropdown"><i class="fas fa-user"></i> <span>User</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ ($page2 == 'User-All' ? 'active' : '') }}">
+                        <a class="nav-link mb-2" href="{{ route('user.index') }}">
+                            <span>All User</span>
+                        </a>
+                    </li>
+                    <li class="{{ ($page2 == 'Shipping-All' ? 'active' : '') }}">
+                        <a class="nav-link mb-2" href="{{ route('shipping.index') }}">
+                            <span>User Shippings</span>
                         </a>
                     </li>
                 </ul>

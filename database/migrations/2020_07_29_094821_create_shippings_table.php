@@ -14,7 +14,8 @@ class CreateShippingsTable extends Migration
     public function up()
     {
         Schema::create('shippings', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
+            $table->integer('id_user')->unsigned();
             $table->string('country');
             $table->string('name');
             $table->string('company_name')->nullable();
@@ -25,6 +26,8 @@ class CreateShippingsTable extends Migration
             $table->string('phone');
             $table->longText('notes')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

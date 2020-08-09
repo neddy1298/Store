@@ -1,4 +1,4 @@
-@extends('admin.layouts.app',['page'=>'Product','page2'=>'All'])
+@extends('admin.layouts.app',['page'=>'Product','page2'=>'Product-All'])
 
 @section('css')
 <!-- CSS Libraries -->
@@ -9,6 +9,9 @@
 @section('content')
 
 <div class="section-header">
+    @if($result ?? '')
+    <a href="{{ route('products.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+    @endif
     <h1>Products</h1>
     <div class="section-header-button">
         <a href="{{ route('products.create')}}" class="btn btn-primary">Add New</a>

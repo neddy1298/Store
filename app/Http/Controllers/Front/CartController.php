@@ -29,15 +29,15 @@ class CartController extends Controller
         // return $product;
         if ($status) {
             $status->update([
-                'user_qty' => $status->qty + $request->user_qty
+                'qty' => $status->qty + $request->qty
             ]);
         }else{
             $cart = Cart::create([
                 'id_user' => Auth::user()->id,
                 'id_product' => $id,
                 'color' => $request->color,
-                'user_qty' => $request->user_qty,
-                'total' => $product->price * $request->user_qty,
+                'qty' => $request->qty,
+                'total' => $product->price * $request->qty,
                 ]);
         }
 
