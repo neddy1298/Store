@@ -80,8 +80,9 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-7 col-12">
-                                    <label>State <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" value="{{ $shipping->state }}" readonly />
+                                    <label>Province <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" value="{{ $shipping->province }}"
+                                        readonly />
                                 </div>
                                 <div class="form-group col-md-5 col-12">
                                     <label>Zip <span class="text-danger">*</span></label>

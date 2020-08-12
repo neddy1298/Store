@@ -21,7 +21,7 @@ class ShippingController extends Controller
         ->orWhere('country', 'like', "%" . $search . "%")
         ->orWhere('name', 'like', "%" . $search . "%")
         ->orWhere('address', 'like', "%" . $search . "%")
-        ->orWhere('state', 'like', "%" . $search . "%")
+        ->orWhere('province', 'like', "%" . $search . "%")
         ->orWhere('zip', 'like', "%" . $search . "%")
         ->orWhere('email', 'like', "%" . $search . "%")
         ->orWhere('phone', 'like', "%" . $search . "%")

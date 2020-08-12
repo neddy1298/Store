@@ -50,4 +50,11 @@ class CartController extends Controller
         Cart::find($id)->delete();
         return redirect()->back();
     }
+
+    public function checkout()
+    {
+        $carts = Cart::where('id_user', Auth::user()->id)->join('products','products.id','=','carts.id_product')
+        ->select('carts.*','products.name','products.price','products.new_price','products.img','products.category')->get();
+        return view('front.cart.checkout', compact('carts'));
+    }
 }

@@ -13,19 +13,28 @@
 
 Route::get('/', 'Front\HomeController@index')->name('home');
 
+// Shop
 Route::get('/shop', 'Front\ShopController@index')->name('shop');
 Route::get('/shop/{id}', 'Front\ShopController@show')->name('shop.detail');
 Route::post('/shop/{id}/add', 'Front\CartController@add')->name('cart.add');
+
+// Cart
 Route::get('/cart', 'Front\CartController@index')->name('cart');
 Route::get('/cart/{id}/delete', 'Front\CartController@delete')->name('cart.delete');
+
+    // Proccess
+    Route::get('/cart/checkout', 'Front\CartController@checkout')->name('cart.checkout');
+
+// Order
+Route::post('/order/{id}/create', 'Front\OrderController@create')->name('order.create');
+
+
+
 
 Route::get('/contact', function () {
     return view('front.contact.index');
 });
 
-Route::get('/1/cart/checkout', function () {
-    return view('front.cart.checkout');
-});
 
 Route::get('/about', function () {
     return view('front.about.index');
