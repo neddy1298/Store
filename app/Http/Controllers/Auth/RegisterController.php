@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -21,12 +22,14 @@ class RegisterController extends Controller
     |
     */
 
+    use RegistersUsers;
+
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -35,7 +38,22 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except(['logout','userLogout']);
+        $this->middleware('guest');
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
     }
 
     /**
@@ -44,22 +62,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-
-    public function showRegisterForm()
+    protected function create(array $data)
     {
-        return view('auth.register');
-    }
-
-    protected function register(Request $request)
-    {
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password_confirmation),
-            'phone' => $request->phone,
-            'level' => $request->level
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
         ]);
-
-        return redirect('/login')->with('success','Registration success please login to access your account');
     }
 }

@@ -44,19 +44,21 @@ Route::get('/thankyou', function () {
     return view('front.cart.thankyou');
 });
 
-Auth::routes();
+Auth::routes(['register' => true]);
 Route::get('/register', 'Auth\RegisterController@showRegisterForm')->name('user.register');
 Route::post('/register', 'Auth\RegisterController@register')->name('user.register.submit');
 Route::get('/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
-Route::group(['prefix' => 'admin.login'], function () {
-    Route::get('/', 'AuthAdmin\LoginController@showLoginForm')->name('admin.login');
-    Route::post('/', 'AuthAdmin\LoginController@login')->name('admin.login.submit');
-    Route::get('/logout', 'AuthAdmin\LoginController@logout')->name('admin.logout');
+// Admin Authentication Routes
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('/login', 'Auth\Admin\LoginController@showLoginForm')->name('admin.login');
+    Route::post('/login', 'Auth\Admin\LoginController@login')->name('admin.login.submit');
+    Route::post('/logout', 'Auth\Admin\LoginController@logout')->name('admin.logout');
 });
 
-Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
-    Route::get('/home', 'Admin\DashboardController@index')->name('admin.dashboard');
+// Admin Protected Routes
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+    Route::get('/', 'Admin\DashboardController@index')->name('admin.dashboard');
 
     // Products
     Route::get('products/search', 'Admin\ProductController@search')->name('products.search');

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\AuthAdmin;
+namespace App\Http\Controllers\Auth\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -38,27 +38,27 @@ class LoginController extends Controller
             'password' => 'required|min:6'
         ]);
 
-        $credential = [
-            'email' => $request->email,
-            'password' => $request->password
-        ];
+        $credentials = $request->only('email', 'password');
+        $remember = $request->filled('remember');
 
-        // Attempt to log the user in
-        if (Auth::guard('admin')->attempt($credential, $request->member)){
-            // If login succesful, then redirect to their intended location
+        if (Auth::guard('admin')->attempt($credentials, $remember)) {
+            $request->session()->regenerate();
             return redirect()->intended(route('admin.dashboard'));
         }
 
-        // If Unsuccessful, then redirect back to the login with the form data
-        return redirect()->back()->withInput($request->only('email', 'remember'))->with('warning','Login gagal periksa kembali email & password anda');
+        return redirect()->back()
+            ->withInput($request->only('email', 'remember'))
+            ->withErrors([
+                'email' => 'These credentials do not match our records.',
+            ]);
     }
 
     public function logout(Request $request)
     {
         Auth::guard('admin')->logout();
-
-//        $request->session()->invalidate();
-
-        return redirect('/admin.login');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect()->route('admin.login');
     }
 }
